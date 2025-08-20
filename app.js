@@ -1,15 +1,16 @@
 const express = require("express");
-
+const cors = require("cors");
 require("dotenv").config();
 
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 
+app.use(cors());
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/report", checkoutRoutes);
