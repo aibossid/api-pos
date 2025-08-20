@@ -14,3 +14,5 @@ router.patch("/:id", editQty);
 router.get("/payment/summary", payment);
 router.post("/:id", addToCart);
 router.delete("/:id", removeFromCart);
+
+module.exports = router;
