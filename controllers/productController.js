@@ -10,7 +10,7 @@ const getAllProducts = (req, res) => {
 const createNewProduct = (req, res) => {
   const { error } = createProductSchema.validate(req.body);
   if (error) {
-    return res.status(400).json({ message: error.details[1].message });
+    return res.status(400).json({ message: error.details[0].message });
   }
 
   const { title, price, description, image, category } = req.body;
