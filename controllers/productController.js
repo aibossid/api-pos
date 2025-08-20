@@ -8,6 +8,7 @@ const getAllProducts = (req, res) => {
 };
 
 const createNewProduct = (req, res) => {
+  console.log("req.body :", req.body);
   const { error } = createProductSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
