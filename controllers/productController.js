@@ -1,17 +1,19 @@
 const products = require("../database/products");
-
 const { createProductSchema } = require("../validators/productValidator");
+
+//* kita akan buatkan fungsi untuk mendapatkan products nya..
 
 const getAllProducts = (req, res) => {
   res.status(200).json(products);
 };
 
-const createProduct = (req, res) => {
+const createNewProduct = (req, res) => {
   const { error } = createProductSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[1].message });
+  }
 
-  if (error) return res.status(400).json({ message: error.details[0].message });
-
-  const { title, price, description, category, image } = req.body;
+  const { title, price, description, image, category } = req.body;
 
   const newProduct = {
     id: Date.now(),
@@ -19,14 +21,15 @@ const createProduct = (req, res) => {
     price,
     description,
     category,
-    image: { rate: 0, count: 0 },
-    stock: 0,
+    image: image || "",
+    rating: { rate: 0, count: 0 },
   };
 
   products.push(newProduct);
-  res
-    .status(200)
-    .json({ message: "product created success", data: newProduct });
+  res.status(201).json({ message: "product create success", data: newProduct });
 };
 
-module.exports({ getAllProducts, createProduct });
+module.exports = {
+  getAllProducts,
+  createNewProduct,
+};
