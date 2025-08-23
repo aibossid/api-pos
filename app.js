@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
+//todo : routes
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/report", checkoutRoutes);
