@@ -1,11 +1,17 @@
 const products = require("../database/products");
-const cart = require("../database/cart");
-const addToCartSchema = require("../validators/cartValidator");
+let cart = require("../database/cart");
 const { get } = require("../routes/productRoutes");
 const { message } = require("../validators/checkoutValidator");
+const {
+  addToCartSchema,
+  updateQtySchema,
+} = require("../validators/cartValidator");
 
 const getCart = (req, res) => {
-  return res.status(200).json(cart);
+  return res.status(200).json({
+    message: "Cart retrieved success",
+    data: cart,
+  });
 };
 
 // todo : proses pembuatan tambah barang ke keranjang =>

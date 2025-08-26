@@ -2,7 +2,7 @@ const joi = require("joi");
 
 const addToCartSchema = joi.object({
   //* artinya joi akan memvalidasi tipe number, dan required adalah mandatory
-  id: joi.number().required(),
+  // id: joi.number().required(),
   //* untuk qty, joi juga akan meminta number, dan harus positive tidak bs minus, dan mandatory
   qty: joi.number().positive().required(),
 });
